@@ -1,4 +1,6 @@
-import { motion } from "motion/react";
+"use client";
+
+import { motion } from "framer-motion";
 
 import {
   Zap,
@@ -24,13 +26,13 @@ function ProjectCard({ icon, title, description, index }: ProjectCardProps) {
     <motion.div
       className="group relative bg-zinc-900 rounded-2xl p-8 cursor-pointer overflow-hidden border border-zinc-800"
       initial={{ opacity: 0, y: 20 }}
-      whiteInView={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
       whileHover={{ scale: 1.03, borderColor: "#f97316" }}
     >
       {/*Gradient background on hover */}
-      <motion.div classname="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <motion.div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       {/*Content */}
       <div className="relative z-10">
         {/*Icon*/}
@@ -123,5 +125,54 @@ export default function Services() {
         "Bespoke software solutions engineered to solve your unique business challenges",
     },
   ];
-  return <></>;
+  return (
+    <section className="bg-gradient-to-b from-zinc-900 via-zinc-900 py-20 px-6">
+      <div className="max-w-7xl mx-auto">
+        {/*Section Header */}
+        <div className="text-center mb-16">
+          <motion.div
+            className="inline-block mb-4"
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <span className="text-orange-500 uppercase tracking-wider">
+              Our Expertise
+            </span>
+          </motion.div>
+          <motion.h2
+            className="text-white mb-4"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            What We Build
+          </motion.h2>
+          <motion.p
+            className="text-zinc-400 text-xl max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            From intelligent automation to full-stack applications, we deliver
+            AI-powered solutions that transform how you do business
+          </motion.p>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.title}
+              icon={project.icon}
+              description={project.description}
+              title={project.title}
+              index={index}
+            />
+          ))}
+        </div>
+      </div>
+      {/*Project Section*/}
+    </section>
+  );
 }
