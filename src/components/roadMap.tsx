@@ -65,6 +65,38 @@ export function RoadMap() {
           </p>
         </div>
       </div>
+
+      {/*Roadmap cards grid*/}
+      <div className="grid md:grid-cols-3 gap-8">
+        {/*Discover and Analysis*/}
+        <RoadmapCard
+          step={1}
+          title="Discovery & Analysis"
+          icon={<Lightbulb className="w-6 h-6 text-white" />}
+          description="We anaylze your business processes, identify inefficiences, and map out AI oppurnities that deliver real ROI"
+          visual={
+            <div className="w-full space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 bg-zinc-700 rounded-lg flex items-center justify-center">
+                  <BarChart3 className="w-8 h-8 text-orange-500" />
+                </div>
+              </div>
+              <div className="flex-1 space-y-2">
+                {[100, 80, 60].map((width, i) => (
+                  <motion.div
+                    key={i}
+                    className="h-3 bg-gradient-to-r from-orange-500 to-red-600 rounded"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${width}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: i * 0.1 }}
+                  />
+                ))}
+              </div>
+            </div>
+          }
+        />
+      </div>
     </section>
   );
 }
