@@ -117,31 +117,132 @@ export function RoadMap() {
           }
         />
         {/*Step 2: Custom AI Development */}
+        <RoadmapCard
+          step={2}
+          title="Custom AI Development"
+          description="Our team builds and deploys tailored AI solutions, seamlessly integrating with your existing systems and workflows."
+          icon={<Cog className="w-8 h-8 text-white" />}
+          visual={
+            <div className="w-full space-y-6 flex flex-col items-center justify-center">
+              <div className="relative">
+                <motion.div
+                  className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center"
+                  animate={{ rotate: [0, 90, 180, 270, 360] }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                >
+                  <Workflow className="w-10 h-10 text-white" />
+                </motion.div>
+                <motion.div
+                  className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-zinc-900"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                  }}
+                />
+              </div>
+              <div className="w-full space-y-3">
+                {["Training Model", "Integration", "Testing"].map(
+                  (label, i) => (
+                    <motion.div
+                      key={label}
+                      className="flex items-center gap-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.2 }}
+                    >
+                      <div className="w-2 h-2 bg-orange-500 rounded-full" />
+                      <div className="flex-1 h-2 bg-zinc-700 rounded-full overflow-hidden">
+                        <motion.div
+                          className="h-full bg-gradient-to-r from-orange-500 to-red-600"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: "100%" }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: i * 0.2 }}
+                        />
+                      </div>
+                    </motion.div>
+                  )
+                )}
+              </div>
+            </div>
+          }
+        />
+        {/*Step 3: Scale and Optimzie*/}
+        <RoadmapCard
+          step={3}
+          title="Scale & Optimize"
+          description="We continuously monitor performance, optimize algorithms, and scale your AI infrastructure to maximize business impact."
+          icon={<Rocket className="w-8 h-8 text-white" />}
+          visual={
+            <div className="w-full flex flex-col items-center justify-center space-y-6">
+              <div className="relative w-full">
+                <svg viewBox="0 0 200 120" className="w-full">
+                  <motion.path
+                    d="M 20 100 Q 60 80, 100 40 T 180 20"
+                    fill="none"
+                    stroke="url(#gradient)"
+                    strokeWidth="3"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 2, ease: "easeInOut" }}
+                  />
+                  <defs>
+                    <linearGradient
+                      id="gradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="0%"
+                    >
+                      <stop offset="0%" stopColor="#f97316" />
+                      <stop offset="100%" stopColor="#dc2626" />
+                    </linearGradient>
+                  </defs>
+                  <motion.circle
+                    cx="180"
+                    cy="20"
+                    r="6"
+                    fill="#f97316"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 2, duration: 0.3 }}
+                  />
+                </svg>
+              </div>
 
-        <div className="">
-          <RoadmapCard
-            step={2}
-            title="Custom AI Development"
-            description="Our team builds and deploys tailored AI solutions, seamlessly integrating with your existing systems and workflows."
-            icon={<Cog className="w-8 h-8 text-white" />}
-            visual={
-              <div className="w-full space-y-6 flex flex-col items-center justify-center">
-                <div className="relative">
-                  <motion.div
-                    className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center"
-                    animate={{ rotate: [0, 90, 180, 270, 360] }}
-                    transition={{
-                      duration: 8,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                  ></motion.div>
-                  <motion.div />
+              <div className="flex flex-col items-center justify-center space-y-6">
+                <div className="grid grid-cols-3 gap-3 w-full">
+                  {[
+                    { label: "Revenue", value: "+250%" },
+                    { label: "Efficiency", value: "+100%" },
+                    { label: "ROI", value: "+150%" },
+                  ].map((metric, i) => (
+                    <motion.div
+                      key={metric.label}
+                      className="bg-zinc-700 rounded-lg p-3 text-center"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 + i * 0.1 }}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <TrendingUp className="w-4 h-4 text-green-500 mx-auto mb-1" />
+                      <div className="text-orange-500">{metric.label}</div>
+                      <div className="text-zinc-400">{metric.value}</div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
-            }
-          />
-        </div>
+            </div>
+          }
+        />
       </div>
     </section>
   );
