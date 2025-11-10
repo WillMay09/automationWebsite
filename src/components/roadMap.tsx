@@ -49,7 +49,9 @@ function RoadmapCard({ icon, step, title, description, visual }: RoadmapProps) {
       {/*Visual*/}
       <motion.div
         className="bg-zinc-800/50 rounded-xl p-6 min-h-[280px] flex items-center justify-center"
+        style={{ backgroundColor: "rgba(39, 39, 42, 0.5)" }}
         whileHover={{ backgroundColor: "rgba(39, 39, 42, 0.8" }}
+        transition={{ duration: 0.3 }}
       >
         {visual}
       </motion.div>
@@ -123,7 +125,7 @@ export function RoadMap() {
           description="Our team builds and deploys tailored AI solutions, seamlessly integrating with your existing systems and workflows."
           icon={<Cog className="w-8 h-8 text-white" />}
           visual={
-            <div className="w-full space-y-6 flex flex-col items-center justify-center">
+            <div className="w-full space-y-10 flex flex-col items-center justify-center">
               <div className="relative">
                 <motion.div
                   className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center"
@@ -145,7 +147,7 @@ export function RoadMap() {
                   }}
                 />
               </div>
-              <div className="w-full space-y-3">
+              <div className="w-full space-y-6">
                 {["Training Model", "Integration", "Testing"].map(
                   (label, i) => (
                     <motion.div
@@ -173,7 +175,7 @@ export function RoadMap() {
             </div>
           }
         />
-        {/*Step 3: Scale and Optimzie*/}
+        {/*Step 3: Scale and Optimize*/}
         <RoadmapCard
           step={3}
           title="Scale & Optimize"
