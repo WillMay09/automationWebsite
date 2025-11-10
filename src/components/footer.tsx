@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Mail,
   Phone,
@@ -33,6 +35,36 @@ export function Footer() {
                 <span className="text-white">AI</span>
               </div>
               <span className="text-white tracking-wider">AIAGENCY</span>
+            </div>
+            <p className="text-zinc-400 mb-6">
+              Transforming businesses with cutting-edge AI solutions and
+              intelligent automation
+            </p>
+            <div className="flex gap-3">
+              <a
+                href="#"
+                className="w-10 h-10 bg-zinc-800 hover:bg-orange-500 rounded-lg flex items-center justify-center transition-colors"
+              >
+                <Linkedin className="w-5 h-5 text-zinc-300" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-zinc-800 hover:bg-orange-500 rounded-lg flex items-center justify-center transition-colors"
+              >
+                <Twitter className="w-5 h-5 text-zinc-300" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-zinc-800 hover:bg-orange-500 rounded-lg flex items-center justify-center transition-colors"
+              >
+                <Instagram className="w-5 h-5 text-zinc-300" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-zinc-800 hover:bg-orange-500 rounded-lg flex items-center justify-center transition-colors"
+              >
+                <Github className="w-5 h-5 text-zinc-300" />
+              </a>
             </div>
           </div>
         </div>
