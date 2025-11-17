@@ -67,6 +67,88 @@ export function Footer() {
               </a>
             </div>
           </div>
+          {/*Services */}
+          <div>
+            <h4 className="text-white mb-4">Services</h4>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  className="text-zinc-400 hover:text-orange-500 transition-colors"
+                >
+                  Process Automation
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-zinc-400 hover:text-orange-500 transition-colors"
+                >
+                  Full Stack Development
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-zinc-400 hover:text-orange-500 transition-colors"
+                >
+                  Web Scraping
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-zinc-400 hover:text-orange-500 transition-colors"
+                >
+                  AI/ML Integration
+                </a>
+              </li>
+            </ul>
+          </div>
+          {/*Company*/}
+          <div>
+            <h4 className="text-white mb-4">Company</h4>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  className="text-zinc-400 hover:text-orange-500 transition-colors"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-zinc-400 hover:text-orange-500 transition-colors"
+                >
+                  Personal Projects
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-zinc-400 hover:text-orange-500 transition-colors"
+                >
+                  Blog
+                </a>
+              </li>
+            </ul>
+          </div>
+          {/*Newsletter*/}
+          <div>
+            <p className="text-zinc-400 text-sm mb-3">
+              Subscribe to our newsletter
+            </p>
+            <form>
+              <Button
+                type="submit"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-4 h-10"
+              >
+                Subcribe
+              </Button>
+            </form>
+          </div>
         </div>
       </div>
     </footer>

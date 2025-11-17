@@ -47,11 +47,16 @@ function RoadmapCard({ icon, step, title, description, visual }: RoadmapProps) {
       </div>
 
       {/*Visual*/}
+
+      {/*Glossy Finish*/}
       <motion.div
-        className="bg-zinc-800/50 rounded-xl p-6 min-h-[280px] flex items-center justify-center"
-        style={{ backgroundColor: "rgba(39, 39, 42, 0.5)" }}
-        whileHover={{ backgroundColor: "rgba(39, 39, 42, 0.8" }}
-        transition={{ duration: 0.3 }}
+        className="bg-zinc-800/50 rounded-xl p-6 min-h-[280px] flex items-center justify-center bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-300"
+        whileHover={{
+          background: "rgba(255,255,255,0.08)",
+          backdropFilter: "blur(8px)",
+          borderColor: "rgba(255,255,255,0.2)",
+        }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
       >
         {visual}
       </motion.div>
