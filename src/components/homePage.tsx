@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Button } from "./ui/button";
-//import {Input} from './ui/input';
+import { Input } from "./ui/input";
 import { Sparkles } from "lucide-react";
 
 interface Node {
@@ -133,27 +133,31 @@ export default function HomePage() {
       {/*Neural Network Background */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
-      <div className="text-center max-w-3xl p-6 border-4 border-amber-500 rounded-sm">
+      {/*Content*/}
+      <div className="relative z-10 text-center max-w-3xl p-6">
         <h1 className="text-5xl md:text-6xl font-bold mb-8">
           Automation, AI Driven Solutions,Custom Software
         </h1>
-        <p className="text-lg md:text-xl mb-8">
+        <p className="text-lg md:text-xl mb-8 mx-auto max-w-2xl">
           Building Robust and Scalable AI Integrated Solutions taloired to your
           bussiness needs
         </p>
         {/* Schedule a meet*/}
-        <form className="flex items-center justify-center">
-          <div className="flex w-full shadow-md overflow-hidden">
-            <input
-              type="email"
-              placeholder="enter email"
-              className="flex-1 px-4 py-3 bg-[#4a4a4a] focus:outline-non"
-              required
-            ></input>
-            <button className="px-5 bg-[#fe6036] text-white font-medium shadow-md hover:bg-blue-700 transition-colors">
-              Schedule a Meeting
-            </button>
-          </div>
+        <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto mb-4">
+          <Input
+            type="email"
+            placeholder="Work Email*"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="flex-1 bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-500 h-12 backdrop-blur-sm"
+          ></Input>
+          <Button
+            type="submit"
+            className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-8 h-12"
+          >
+            Schedule Demo
+          </Button>
         </form>
       </div>
     </section>
