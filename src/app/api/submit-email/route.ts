@@ -9,20 +9,23 @@ export async function POST(req: Request) {
     const { email } = await req.json();
 
     //validation
-    if (email || !email.includes("@")) {
+    if (!email || !email.includes("@")) {
       return NextResponse.json(
         { error: "Invalid email address" },
         { status: 400 }
       );
     }
 
+    console.log("Incoming email", email);
+
     //Example email
 
     await resend.emails.send({
-      from: "AI Agency<onboarding@resend.dev",
+      from: "AI Agency<onboarding@resend.dev>",
       to: "mayhoodwilliam@gmail.com",
       subject: "New email signup",
-      html: `<p><strong>${email}</strong> joined your list. </p>`,
+      html: `<p><strong>${email}</strong></p>
+    <p>Congrats on setting up your website!</p>`,
     });
 
     return NextResponse.json({ success: true });
