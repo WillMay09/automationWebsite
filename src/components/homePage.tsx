@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Sparkles } from "lucide-react";
 import { stringify } from "querystring";
+import { useEmailSignup } from "@/src/app/hooks/useEmailSignup";
 
 interface Node {
   x: number;
@@ -15,21 +16,14 @@ interface Node {
 }
 
 export default function HomePage() {
-  const [email, setEmail] = useState("");
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { email, setEmail, submitEmail, status } = useEmailSignup();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email submitted:", email);
     //Handle email submission
-    const res = await fetch("api/submit-email", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
-
-    const data = await res.json();
-    console.log(data);
+    submitEmail();
   };
   useEffect(() => {
     //gets drawing surface
@@ -166,11 +160,18 @@ export default function HomePage() {
           ></Input>
           <Button
             type="submit"
+            disabled={status === "loading"}
             className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-8 h-12"
           >
-            Schedule Demo
+            {status === "loading" ? "Sending..." : "Schedule Demo"}
           </Button>
         </form>
+        {status === "success" && <p>Thanks! We will be in touch shortly</p>}
+        {status === "error" && (
+          <p className="text-red-500 text-center">
+            Something went wrong. Try again
+          </p>
+        )}
       </div>
     </section>
   );
