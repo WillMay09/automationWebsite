@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 export default function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#4a4a4a] backdrop-blur-sm border-b border-zinc-800 text-white">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-900 backdrop-blur-sm border-b border-zinc-800 text-white">
       {/* Large box */}
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -16,38 +16,40 @@ export default function Navbar() {
             <div className="w-8 h-8 bg-gradient-to-br from-[#fe6036] to red-600 flex items-center justify-center">
               <span>AI</span>
             </div>
-            <span className="text-xl font-bold tracking-wider">CLOUDZERO</span>
+            <span className="text-xl font-bold tracking-wider">
+              SIGNALSTACK
+            </span>
           </div>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-8 font-medium text-white">
             <Link
               href="Why AI"
-              className=" hover: text-[#fe6036] transition-colors"
+              className="hover:text-[#fe6036] transition-colors"
             >
               Why AI
             </Link>
             <Link
               href="#Services"
-              className="flex items-center gap-1 hover: text-[#fe6036] transition-colors"
+              className="flex items-center gap-1 hover:text-[#fe6036] transition-colors"
             >
               Services
             </Link>
             <Link
               href="#Company"
-              className="flex items-center gap-1 hover: text-[#fe6036] transition-colors"
+              className="flex items-center gap-1 hover:text-[#fe6036] transition-colors"
             >
               Company
             </Link>
             <Link
               href="#Pricing"
-              className="flex items-center gap-1 hover: text-[#fe6036] transition-colors"
+              className="flex items-center gap-1 hover:text-[#fe6036] transition-colors"
             >
               Pricing
             </Link>
             <Link
               href="#Roadmap"
-              className="flex items-center gap-1 hover: text-[#fe6036] transition-colors"
+              className="flex items-center gap-1 hover:text-[#fe6036] transition-colors"
             >
               Roadmap
             </Link>

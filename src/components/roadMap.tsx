@@ -85,7 +85,7 @@ export function RoadMap() {
           step={1}
           title="Discovery & Analysis"
           icon={<Lightbulb className="w-6 h-6 text-white" />}
-          description="We anaylze your business processes, identify inefficiences, and map out AI oppurnities that deliver real ROI"
+          description="We anaylze your business processes, identify inefficiences, and map out AI automations to help reduce cost and increase efficiency"
           visual={
             <div className="w-full space-y-4">
               <div className="flex items-center gap-4">
@@ -127,7 +127,7 @@ export function RoadMap() {
         <RoadmapCard
           step={2}
           title="Custom AI Development"
-          description="Our team builds and deploys tailored AI solutions, seamlessly integrating with your existing systems and workflows."
+          description="We deliver tailored AI and software solutions, seamlessly integrating with your existing systems and workflows."
           icon={<Cog className="w-8 h-8 text-white" />}
           visual={
             <div className="w-full space-y-10 flex flex-col items-center justify-center">
@@ -183,8 +183,8 @@ export function RoadMap() {
         {/*Step 3: Scale and Optimize*/}
         <RoadmapCard
           step={3}
-          title="Scale & Optimize"
-          description="We continuously monitor performance, optimize algorithms, and scale your AI infrastructure to maximize business impact."
+          title="Optimize"
+          description="We continuously monitor performance and optimize algorithms to maximize bussiness impact."
           icon={<Rocket className="w-8 h-8 text-white" />}
           visual={
             <div className="w-full flex flex-col items-center justify-center space-y-6">

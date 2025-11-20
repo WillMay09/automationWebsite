@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Sparkles } from "lucide-react";
+import { stringify } from "querystring";
 
 interface Node {
   x: number;
@@ -17,10 +18,18 @@ export default function HomePage() {
   const [email, setEmail] = useState("");
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email submitted:", email);
     //Handle email submission
+    const res = await fetch("api/submit-email", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await res.json();
+    console.log(data);
   };
   useEffect(() => {
     //gets drawing surface
@@ -143,10 +152,13 @@ export default function HomePage() {
           bussiness needs
         </p>
         {/* Schedule a meet*/}
-        <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto mb-4">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto mb-4"
+        >
           <Input
             type="email"
-            placeholder="Work Email*"
+            placeholder="Enter Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
