@@ -24,7 +24,7 @@ export default function Navbar() {
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-8 font-medium text-white">
             <Link
-              href="Why AI"
+              href="/impact"
               className="hover:text-[#fe6036] transition-colors"
             >
               Why AI

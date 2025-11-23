@@ -1,22 +1,27 @@
+"use client";
+
 import { Zap, TrendingUp, DollarSign, Users, Sparkles } from "lucide-react";
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
 
+type IconName = keyof typeof iconMap;
+
 interface AdvantageCardProps {
-  iconName: string;
+  iconName: IconName;
   description: string;
   index: number;
 }
 
-const iconMap: Record<string, React.ReactNode> = {
-  Zap: <Zap />,
-  TrendingUp: <TrendingUp />,
-  Users: <Users />,
-  Sparkles: <Sparkles />,
+const iconMap = {
+  Zap,
+  TrendingUp,
+  Users,
+  DollarSign,
 };
 
 function AdvantageCard({ iconName, description, index }: AdvantageCardProps) {
-  const IconToRender = iconMap[iconName.toLowerCase()];
+  const IconToRender = iconMap[iconName];
+  console.log(IconToRender);
   return (
     <motion.div
       className="group relative bg-white rounded-2xl p-8 cursor-pointer overflow-hidden border border-zinc-200 hover:shadow-xl text-center hover:border-amber-500 transition-all duration-300"
@@ -26,8 +31,12 @@ function AdvantageCard({ iconName, description, index }: AdvantageCardProps) {
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
     >
-      <div className="w-16 h-16 bg-gradient-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-        {IconToRender ?? <Sparkles size={32} />}
+      <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+        {IconToRender ? (
+          <IconToRender className="text-white w-8 h-8" />
+        ) : (
+          <Sparkles className="text-white w-8 h-8" />
+        )}
         {/* fallback icon */}
       </div>
       <p className="text-zinc-600 mb-2">{description}</p>
@@ -36,7 +45,7 @@ function AdvantageCard({ iconName, description, index }: AdvantageCardProps) {
 }
 
 export function Advantage() {
-  const stats = [
+  const stats: { iconName: IconName; description: string }[] = [
     { iconName: "Zap", description: "Increase in Productivity" },
     { iconName: "TrendingUp", description: "Faster Decision Making" },
     { iconName: "DollarSign", description: "Cost Reduction" },
@@ -57,14 +66,17 @@ export function Advantage() {
             Results from businesses that embraced AI transformation
           </p>
         </motion.div>
-        {stats.map((stat, index) => (
-          <AdvantageCard
-            key={stat.iconName || index}
-            iconName={stat.iconName}
-            description={stat.description}
-            index={index}
-          />
-        ))}
+
+        <div className="grid grid-cols-4 gap-8">
+          {stats.map((stat, index) => (
+            <AdvantageCard
+              key={stat.iconName || index}
+              iconName={stat.iconName}
+              description={stat.description}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
