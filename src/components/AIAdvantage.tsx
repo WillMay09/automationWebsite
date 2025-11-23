@@ -20,6 +20,7 @@ const iconMap = {
 };
 
 function AdvantageCard({ iconName, description, index }: AdvantageCardProps) {
+  //mapping string to component
   const IconToRender = iconMap[iconName];
   console.log(IconToRender);
   return (
