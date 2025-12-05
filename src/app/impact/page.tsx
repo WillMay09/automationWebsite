@@ -4,6 +4,7 @@ import { Advantage } from "@/src/components/AIAdvantage";
 import { BusinessBenfits } from "@/src/components/businessBenefits";
 import { HeroSection } from "@/src/components/AIHeroSection";
 import { CustomSoftware } from "@/src/components/customSoftwarebenefits";
+import { IndustriesChanged } from "@/src/components/IndustriesChanged";
 export default function Impact() {
   return (
     <>
@@ -11,6 +12,7 @@ export default function Impact() {
       <HeroSection />
       <Advantage />
       <BusinessBenfits />
+      <IndustriesChanged />
       <CustomSoftware />
       <Footer />
     </>
