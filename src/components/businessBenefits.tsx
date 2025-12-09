@@ -1,5 +1,8 @@
 "use client";
 
+import { SectionGrid } from "./ui/SectionGrid";
+import { UniversalCard } from "./ui/UniversalCard";
+import { iconMap, IconName } from "./ui/icons";
 import {
   Target,
   Shield,
@@ -11,58 +14,6 @@ import {
   Cpu,
   MessageSquare,
 } from "lucide-react";
-
-import { motion } from "framer-motion";
-
-type IconName = keyof typeof iconMap;
-
-interface BusinessBenefitsProps {
-  iconName: IconName;
-  title: string;
-  description: string;
-  index: number;
-}
-
-const iconMap = {
-  Target,
-  Shield,
-  Clock,
-  LineChart,
-  Users,
-  Workflow,
-  Boxes,
-  Cpu,
-  MessageSquare,
-};
-
-export function BusinessBenefitsCard({
-  iconName,
-  title,
-  description,
-  index,
-}: BusinessBenefitsProps) {
-  const Icon = iconMap[iconName];
-  return (
-    <motion.div
-      className="bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-700 hover:border-orange-500 transition-all duration-300 p-8 cursor-pointer"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-      whileHover={{ scale: 1.03, borderColor: "#f97316" }}
-    >
-      <div className="w-14 h-14 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex justify-center items-center mb-6">
-        {Icon ? (
-          <Icon className="text-white w-7 h-7" />
-        ) : (
-          <Cpu className="text-white w-7 h-7" />
-        )}
-      </div>
-      <h3 className="text-white mb-3">{title}</h3>
-      <p className="text-zinc-400">{description}</p>
-    </motion.div>
-  );
-}
 
 export function BusinessBenfits() {
   const benefits: { iconName: IconName; title: string; description: string }[] =
@@ -105,33 +56,22 @@ export function BusinessBenfits() {
       },
     ];
   return (
-    <section className="bg-zinc-900 py-20 px-6">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-white mb-4">
-            Transform Every Aspect of Your Business
-          </h2>
-          <p className="text-zinc-400 text-xl max-w-2xl mx-auto">
-            AI delivers measurable impact across all business functions
-          </p>
-        </motion.div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => (
-            <BusinessBenefitsCard
-              key={benefit.iconName || index}
-              iconName={benefit.iconName}
-              title={benefit.title}
-              description={benefit.description}
-              index={index}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+    <SectionGrid
+      title="Transform Every Aspect of Your Business"
+      subtitle="AI delivers measurable impact across all business functions"
+      bg="dark"
+      columns={3}
+    >
+      {benefits.map((benefit, index) => (
+        <UniversalCard
+          key={index}
+          icon={iconMap[benefit.iconName]}
+          title={benefit.title}
+          description={benefit.description}
+          variant="dark"
+          index={index}
+        />
+      ))}
+    </SectionGrid>
   );
 }
