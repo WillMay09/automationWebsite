@@ -5,11 +5,12 @@ import { ReactNode } from "react";
 import { motion } from "framer-motion";
 
 interface SectionGridProps {
-  title: string;
-  subtitle: string;
-  children: ReactNode;
+  title?: string;
+  subtitle?: string;
+  children?: React.ReactNode;
   bg?: "light" | "dark";
-  columns: 2 | 3 | 4;
+  columns: 1 | 2 | 3 | 4;
+  className?: string;
 }
 
 export function SectionGrid({
@@ -18,44 +19,40 @@ export function SectionGrid({
   children,
   bg = "light",
   columns = 3,
+  className = "",
 }: SectionGridProps) {
+  ///after
+  const bgClass = bg === "dark" ? "bg-zinc-900" : "bg-white";
+  const gridCols =
+    columns === 1
+      ? "grid-col-1"
+      : columns === 2
+      ? "grid-col-2"
+      : columns === 3
+      ? "md:grid-cols-2 lg:grid-cols-3"
+      : "md:grid-cols-2 lg:grid-cols-4";
   return (
-    <section
-      className={`py-20 px-6 ${bg === "light" ? "bg-white" : "bg-zinc-900"}`}
-    >
+    <section className={`${bgClass} py-16 px-6 ${className}`}>
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          viewport={{ once: true }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          whileHover={{ scale: 1.03, y: -8, transition: { duration: 0.25 } }}
-        >
-          <h2
-            className={`mb-4 ${
-              bg === "light" ? "text-zinc-900" : "text-white"
-            }`}
-          >
-            {title}
-          </h2>
-
-          <p
-            className={`text-xl max-w-2xl mx-auto ${
-              bg === "light" ? "text-zinc-600" : "text-zinc-400"
-            }`}
-          >
-            {subtitle}
-          </p>
-        </motion.div>
-
-        <div
-          className={`grid gap-8 ${columns === 2 && "grid-cols-2"} ${
-            columns === 3 && "grid-cols-3"
-          } ${columns === 4 && "grid-cols-4"}`}
-        >
-          {children}
-        </div>
+        {title && (
+          <div className="text-center mb-10">
+            <h2
+              className={
+                bg === "dark"
+                  ? "text-white text-2xl md:text-3xl"
+                  : "text-zinc-900 text-2xl md:text-3xl"
+              }
+            >
+              {title}
+            </h2>
+            {subtitle && (
+              <p className={bg === "dark" ? "text-zinc-400" : "text-zinc-600"}>
+                {subtitle}
+              </p>
+            )}
+          </div>
+        )}
+        <div className={`grid gap-6 ${gridCols}`}>{children}</div>
       </div>
     </section>
   );

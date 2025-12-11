@@ -44,6 +44,6 @@ export const iconMap = {
   Sparkles,
   ArrowRight,
   CheckCircle2,
-};
+} as const;
 
 export type IconName = keyof typeof iconMap;

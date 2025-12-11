@@ -64,12 +64,14 @@ export function BusinessBenfits() {
     >
       {benefits.map((benefit, index) => (
         <UniversalCard
-          key={index}
+          key={benefit.title}
           icon={iconMap[benefit.iconName]}
           title={benefit.title}
           description={benefit.description}
           variant="dark"
           index={index}
+          interactive={true}
+          className="cursor-pointer"
         />
       ))}
     </SectionGrid>
