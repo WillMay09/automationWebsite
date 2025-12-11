@@ -60,6 +60,8 @@ export function CustomSoftware() {
           description={benefit.description}
           variant="dark"
           index={index}
+          interactive={true}
+          className="cursor-pointer"
         />
       ))}
     </SectionGrid>
