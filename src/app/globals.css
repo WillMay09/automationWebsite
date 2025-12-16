@@ -1,26 +1,121 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ---------- Brand Colors ---------- */
+  --color-accent: 249 115 22; /* orange-500 */
+  --color-accent-strong: 220 38 38; /* red-600 */
+
+  /* ---------- Backgrounds ---------- */
+  --color-bg-dark: 24 24 27;   /* zinc-900 */
+  --color-bg-card: 39 39 42;   /* zinc-800 */
+  --color-bg-light: 255 255 255;/*white*/
+
+  /* ---------- Text ---------- */
+  --color-text-primary-dark: 255 255 255;
+  --color-text-secondary-dark: 161 161 170; /* zinc-400 */
+  --color-text-muted-dark: 212 212 216;     /* zinc-300 */
+
+  --color-text-primary-light: 24 24 27;     /* zinc-900 */
+  --color-text-secondary-light: 82 82 91;   /* zinc-600 */
+
+  /* ---------- Borders ---------- */
+  --color-border-dark: 63 63 70;   /* zinc-700 */
+  --color-border-light: 228 228 231; /* zinc-200 */
+
+  /* ---------- Effects ---------- */
+  --glow-accent: 0 0 40px rgba(249, 115, 22, 0.35);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Global typography rules */
+html {
+  font-family: var(--font-sans, system-ui, -apple-system, BlinkMacSystemFont);
+  background-color: rgb(var(--color-bg-dark));
+  color: rgb(var(--color-text-primary-dark));
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+h1, h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+p {
+  line-height: 1.6;
+}
+
+/* ---------- Background Helpers ---------- */
+.bg-app-dark { background-color: rgb(var(--color-bg-dark)); }
+.bg-card-dark { background-color: rgb(var(--color-bg-card)); }
+.bg-light { background-color: rgb(var(--color-bg-light)); }
+
+.bg-accent { background-color: rgb(var(--color-accent)); }
+.bg-accent-strong { background-color: rgb(var(--color-accent-strong)); }
+
+/* ---------- Text Helpers ---------- */
+.text-primary-dark { color: rgb(var(--color-text-primary-dark)); }
+.text-secondary-dark { color: rgb(var(--color-text-secondary-dark)); }
+.text-muted-dark { color: rgb(var(--color-text-muted-dark)); }
+
+.text-primary-light { color: rgb(var(--color-text-primary-light)); }
+.text-secondary-light { color: rgb(var(--color-text-secondary-light)); }
+
+.text-accent { color: rgb(var(--color-accent)); }
+.text-accent-strong { color: rgb(var(--color-accent-strong)); }
+
+/* ---------- Border Helpers ---------- */
+.border-dark { border-color: rgb(var(--color-border-dark)); }
+.border-light { border-color: rgb(var(--color-border-light)); }
+.border-accent { border-color: rgb(var(--color-accent)); }
+
+/* ---------- Glow Effects ---------- */
+.glow-accent { box-shadow: var(--glow-accent); }
+
+/* ---------- Hover / Interactive Helpers ---------- */
+.hover-bg-accent:hover { background-color: rgb(var(--color-accent)); }
+.hover-border-accent:hover { border-color: rgb(var(--color-accent)); }
+.hover-text-accent:hover { color: rgb(var(--color-accent)); }
+
+/* ---------- Gradient Helpers ---------- */
+
+/* Subtle accent glow (10% opacity) */
+.gradient-accent-soft {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(var(--color-accent) / 0.1),
+    rgb(var(--color-accent-strong) / 0.1)
+  );
+}
+
+/* Strong accent gradient (100%) */
+.gradient-accent-strong {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(var(--color-accent)),
+    rgb(var(--color-accent-strong))
+  );
+}
+
+/* ✅ Group hover support */
+.group:hover .group-hover-gradient-accent-strong {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(var(--color-accent)),
+    rgb(var(--color-accent-strong))
+  );
+}
+
+.group:hover .group-hover-gradient-accent-soft {
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(var(--color-accent), 0.1),
+    rgba(var(--color-accent-strong), 0.1)
+  );
+}
+
+/* Decorative corner gradient */
+.gradient-accent-corner {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(var(--color-accent) / 0.2),
+    transparent
+  );
 }

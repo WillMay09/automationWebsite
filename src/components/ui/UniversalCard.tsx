@@ -14,9 +14,9 @@ interface UniversalCardProps {
   variant?: CardVariant;
   index: number;
   children?: React.ReactNode;
-  className?: string,
-  onClick?: ()=>void;
-  interactive?:boolean;//toggle hover effects
+  className?: string;
+  onClick?: () => void;
+  interactive?: boolean; // toggle hover effects
 }
 
 export function UniversalCard({
@@ -26,17 +26,18 @@ export function UniversalCard({
   variant = "light",
   index = 0,
   children,
-  className="",
+  className = "",
   onClick,
   interactive = true,
 }: UniversalCardProps) {
   const isLight = variant === "light";
+  
   return (
     <motion.div
       className={[
         "flex flex-col p-6 rounded-2xl h-full transition-all duration-200 overflow-hidden",
-        isLight ? "bg-white border border-zinc-200" : "bg-zinc-900 border border-zinc-700",
-        interactive ? "hover:shadow-xl focus:shadow-xl hover:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500" : "",
+        isLight ? "bg-light border border-light" : "bg-app-dark border border-dark",
+        interactive ? "hover:shadow-xl focus:shadow-xl hover-border-accent focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-accent))]" : "",
         className,
       ].join(" ")}
       role={onClick ? "button" : undefined}
@@ -50,18 +51,18 @@ export function UniversalCard({
       variants={cardVariants}
     >
       {Icon && (
-       <div className="w-14 h-14 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex justify-center items-center mb-6">
-          <Icon className="text-white w-7 h-7" />
+        <div className="w-14 h-14 gradient-accent-strong rounded-2xl flex justify-center items-center mb-6">
+          <Icon className="text-primary-dark w-7 h-7" />
         </div>
       )}
 
       {title && (
-        <h3 className={`mb-3 ${isLight ? "text-black" : "text-white"}`}>
+        <h3 className={`mb-3 ${isLight ? "text-primary-light" : "text-primary-dark"}`}>
           {title}
         </h3>
       )}
       {description && (
-        <p className={isLight ? "text-zinc-600" : "text-zinc-400"}>
+        <p className={isLight ? "text-secondary-light" : "text-secondary-dark"}>
           {description}
         </p>
       )}

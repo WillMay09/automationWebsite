@@ -1,5 +1,4 @@
 "use client";
-
 import { motion } from "framer-motion";
 
 import {
@@ -24,38 +23,39 @@ interface ProjectCardProps {
 function ProjectCard({ icon, title, description, index }: ProjectCardProps) {
   return (
     <motion.div
-      className="group relative bg-zinc-900 rounded-2xl p-8 cursor-pointer overflow-hidden border border-zinc-800"
+      className="group relative bg-app-dark border border-dark rounded-2xl p-8 cursor-pointer overflow-hidden"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
       whileHover={{ scale: 1.03, borderColor: "#f97316" }}
+     
     >
       {/*Gradient background on hover */}
-      <motion.div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <motion.div className="absolute inset-0 gradient-accent-soft opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       {/*Content */}
       <div className="relative z-10">
         {/*Icon*/}
         <motion.div
-          className="w-16 bg-zinc-800 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-red-600 transition-all duration-300"
+          className="w-16 bg-card-dark rounded-xl flex items-center group-hover-gradient-accent-strong justify-center mb-6 transition-all duration-300"
           whileHover={{ rotate: [0, -10, 10, -10, 0] }}
           transition={{ duration: 0.5 }}
         >
-          <div className="text-orange-500 group-hover:text-white transition-colors duration-300">
+          <div className="text-accent group-hover:text-white transition-colors duration-300">
             {icon}
           </div>
         </motion.div>
         {/*title */}
-        <h3 className="text-white mb-3 group:hover:text-orange-500 transition-colors duration-300">
+        <h3 className="text-primary-dark mb-3 hover-text-accent transition-colors duration-300">
           {title}
         </h3>
         {/*Description*/}
-        <p className="text-zinc-400 mb-6 group-hover:text-zinc-300 transition-colors duration-300">
+        <p className="text-secondary-dark mb-6 group-hover:text-muted-dark transition-colors duration-300">
           {description}
         </p>
         {/*Arrow*/}
         <motion.div
-          className="flex items-center gap-2 text-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          className="flex items-center gap-2 text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           initial={{ x: -10 }}
           whileHover={{ x: 0 }}
         >
@@ -64,7 +64,7 @@ function ProjectCard({ icon, title, description, index }: ProjectCardProps) {
         </motion.div>
       </div>
       {/* Decorative corner */}
-      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute top-0 right-0 w-20 h-20 gradient-accent-soft to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </motion.div>
   );
 }
@@ -126,7 +126,7 @@ export default function Services() {
     },
   ];
   return (
-    <section className="bg-gradient-to-b from-zinc-900 via-zinc-900 py-20 px-6">
+    <section className="bg-gradient-to-b bg-app-dar py-20 px-6">
       <div className="max-w-7xl mx-auto">
         {/*Section Header */}
         <div className="text-center mb-16">
@@ -136,7 +136,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-orange-500 uppercase tracking-wider">
+            <span className="text-accent uppercase tracking-wider">
               Our Expertise
             </span>
           </motion.div>
@@ -150,7 +150,7 @@ export default function Services() {
             What We Build
           </motion.h2>
           <motion.p
-            className="text-zinc-400 text-xl max-w-3xl mx-auto"
+            className="text-secondary-dark text-xl max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

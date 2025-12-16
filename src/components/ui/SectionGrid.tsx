@@ -1,7 +1,6 @@
 "use client";
 
 import { ReactNode } from "react";
-
 import { motion } from "framer-motion";
 
 interface SectionGridProps {
@@ -21,32 +20,29 @@ export function SectionGrid({
   columns = 3,
   className = "",
 }: SectionGridProps) {
-  ///after
-  const bgClass = bg === "dark" ? "bg-zinc-900" : "bg-white";
+  const bgClass = bg === "dark" ? "bg-app-dark" : "bg-light";
+  const titleClass = bg === "dark" ? "text-primary-dark" : "text-primary-light";
+  const subtitleClass = bg === "dark" ? "text-secondary-dark" : "text-secondary-light";
+  
   const gridCols =
     columns === 1
-      ? "grid-col-1"
+      ? "grid-cols-1"
       : columns === 2
-      ? "grid-col-2"
+      ? "grid-cols-1 md:grid-cols-2"
       : columns === 3
-      ? "md:grid-cols-2 lg:grid-cols-3"
-      : "md:grid-cols-2 lg:grid-cols-4";
+      ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+      : "grid-cols-1 md:grid-cols-2 lg:grid-cols-4";
+  
   return (
     <section className={`${bgClass} py-16 px-6 ${className}`}>
       <div className="max-w-7xl mx-auto">
         {title && (
           <div className="text-center mb-10">
-            <h2
-              className={
-                bg === "dark"
-                  ? "text-white text-2xl md:text-3xl"
-                  : "text-zinc-900 text-2xl md:text-3xl"
-              }
-            >
+            <h2 className={`${titleClass} text-2xl md:text-3xl`}>
               {title}
             </h2>
             {subtitle && (
-              <p className={bg === "dark" ? "text-zinc-400" : "text-zinc-600"}>
+              <p className={subtitleClass}>
                 {subtitle}
               </p>
             )}

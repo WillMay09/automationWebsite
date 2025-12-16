@@ -25,22 +25,22 @@ function AdvantageCard({ iconName, description, index }: AdvantageCardProps) {
   console.log(IconToRender);
   return (
     <motion.div
-      className="group relative bg-white rounded-2xl p-8 cursor-pointer overflow-hidden border border-zinc-200 hover:shadow-xl text-center hover:border-amber-500 transition-all duration-300"
+      className="group relative bg-light rounded-2xl p-8 cursor-pointer overflow-hidden border border-light hover:shadow-xl text-center hover-border-accent transition-all duration-300"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
     >
-      <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+      <div className="w-16 h-16 gradient-accent-strong rounded-2xl flex items-center justify-center mx-auto mb-6">
         {IconToRender ? (
-          <IconToRender className="text-white w-8 h-8" />
+          <IconToRender className="text-primary-dark w-8 h-8" />
         ) : (
-          <Sparkles className="text-white w-8 h-8" />
+          <Sparkles className="text-primary-dark w-8 h-8" />
         )}
         {/* fallback icon */}
       </div>
-      <p className="text-zinc-600 mb-2">{description}</p>
+      <p className="text-secondary-light mb-2">{description}</p>
     </motion.div>
   );
 }
@@ -54,7 +54,7 @@ export function Advantage() {
   ];
 
   return (
-    <section className="bg-white py-20 px-6">
+    <section className="bg-light py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -62,8 +62,8 @@ export function Advantage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-zinc-900 mb-4">The AI Advantage in Numbers</h2>
-          <p className="text-zinc-600 text-xl max-w-2xl mx-auto">
+          <h2 className="text-primary-light mb-4">The AI Advantage in Numbers</h2>
+          <p className="text-secondary-light text-xl max-w-2xl mx-auto">
             Results from businesses that embraced AI transformation
           </p>
         </motion.div>
