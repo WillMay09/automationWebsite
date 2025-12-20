@@ -61,11 +61,11 @@ export function IndustriesChanged() {
       ],
     },
   ];
+  
   return (
     <SectionGrid
       title="AI is transforming Every Industry"
-      subtitle="See how businesses across sectors are leveraging AI to outperform
-              competitors"
+      subtitle="See how businesses across sectors are leveraging AI to outperform competitors"
       bg="light"
       columns={3}
     >
@@ -76,22 +76,29 @@ export function IndustriesChanged() {
           variant="light"
           interactive={true}
         >
-          {/* CUSTOM CHILD CONTENT (instead of icon/title/description props) */}
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-3 h-3 bg-gradient-to-br from-orange-500 to-red-600 rounded-full" />
-            <h3 className="text-zinc-900">{industry.name}</h3>
+          {/* Header with status dot */}
+          <div className="flex items-center gap-3 mb-8">
+            <div className="status-dot" />
+            <h3 className="text-lg font-medium text-primary-light tracking-tight">
+              {industry.name}
+            </h3>
           </div>
 
-          <div className="flex items-center gap-2 mb-4">
-            <TrendingUp className="w-4 h-4 text-green-500" />
-            <p className="text-zinc-900">{industry.impact}</p>
+          {/* Impact metric */}
+          <div className="mb-8 flex items-start gap-2 text-sm font-medium text-success">
+            <TrendingUp className="h-4 w-4 shrink-0 mt-0.5" />
+            <span>{industry.impact}</span>
           </div>
-          {industry.use_cases.map((uc) => (
-            <div key={uc} className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
-              <span className="text-zinc-600 text-sm">{uc}</span>
-            </div>
-          ))}
+
+          {/* Use cases list */}
+          <ul className="space-y-3">
+            {industry.use_cases.map((uc) => (
+              <li key={uc} className="flex items-start gap-3 text-sm">
+                <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+                <span className="text-secondary-light">{uc}</span>
+              </li>
+            ))}
+          </ul>
         </UniversalCard>
       ))}
     </SectionGrid>

@@ -20,7 +20,8 @@ export function SectionGrid({
   columns = 3,
   className = "",
 }: SectionGridProps) {
-  const bgClass = bg === "dark" ? "bg-app-dark" : "bg-light";
+  // Use glassmorphism section backgrounds
+  const bgClass = bg === "dark" ? "section-dark" : "section-light";
   const titleClass = bg === "dark" ? "text-primary-dark" : "text-primary-light";
   const subtitleClass = bg === "dark" ? "text-secondary-dark" : "text-secondary-light";
   
@@ -34,15 +35,15 @@ export function SectionGrid({
       : "grid-cols-1 md:grid-cols-2 lg:grid-cols-4";
   
   return (
-    <section className={`${bgClass} py-16 px-6 ${className}`}>
-      <div className="max-w-7xl mx-auto">
+    <section className={`relative w-full ${bgClass} py-24 overflow-hidden ${className}`}>
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {title && (
-          <div className="text-center mb-10">
-            <h2 className={`${titleClass} text-2xl md:text-3xl`}>
+          <div className={`${title && subtitle ? 'mx-auto max-w-3xl text-center mb-20' : 'text-center mb-16'}`}>
+            <h2 className={`${titleClass} text-4xl font-medium tracking-tight sm:text-5xl mb-4`}>
               {title}
             </h2>
             {subtitle && (
-              <p className={subtitleClass}>
+              <p className={`${subtitleClass} text-xl font-light mt-6`}>
                 {subtitle}
               </p>
             )}

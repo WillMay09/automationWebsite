@@ -5,7 +5,7 @@ import React from "react"
 import { motion } from "framer-motion";
 import { cardVariants } from "@/src/app/hooks/motionVariants";
 
-export type CardVariant = "light" | "dark"
+export type CardVariant = "light" | "dark";
 
 interface UniversalCardProps {
   icon?: React.ElementType;
@@ -32,12 +32,17 @@ export function UniversalCard({
 }: UniversalCardProps) {
   const isLight = variant === "light";
   
+  // Build glass morphism classes based on variant
+  const glassClasses = isLight 
+    ? "glass-card-light" 
+    : "glass-card-dark";
+  
   return (
     <motion.div
       className={[
-        "flex flex-col p-6 rounded-2xl h-full transition-all duration-200 overflow-hidden",
-        isLight ? "bg-light border border-light" : "bg-app-dark border border-dark",
-        interactive ? "hover:shadow-xl focus:shadow-xl hover-border-accent focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-accent))]" : "",
+        "group relative flex flex-col p-8 rounded-3xl h-full overflow-hidden transition-all duration-500",
+        glassClasses,
+        interactive ? "cursor-pointer" : "",
         className,
       ].join(" ")}
       role={onClick ? "button" : undefined}
@@ -51,22 +56,38 @@ export function UniversalCard({
       variants={cardVariants}
     >
       {Icon && (
-        <div className="w-14 h-14 gradient-accent-strong rounded-2xl flex justify-center items-center mb-6">
-          <Icon className="text-primary-dark w-7 h-7" />
+        <div className={[
+          "flex h-14 w-14 items-center justify-center rounded-xl mb-8",
+          isLight 
+            ? "bg-accent text-primary-dark" 
+            : "bg-accent text-primary-dark glow-accent-subtle"
+        ].join(" ")}>
+          <Icon className="w-7 h-7" strokeWidth={2} />
         </div>
       )}
 
       {title && (
-        <h3 className={`mb-3 ${isLight ? "text-primary-light" : "text-primary-dark"}`}>
+        <h3 className={[
+          "mb-3 text-xl font-medium tracking-tight",
+          isLight ? "text-primary-light" : "text-primary-dark"
+        ].join(" ")}>
           {title}
         </h3>
       )}
+      
       {description && (
-        <p className={isLight ? "text-secondary-light" : "text-secondary-dark"}>
+        <p className={[
+          "text-lg font-light leading-relaxed",
+          isLight ? "text-secondary-light" : "text-secondary-dark"
+        ].join(" ")}>
           {description}
         </p>
       )}
+      
       {children}
+      
+      {/* Ambient glow for dark variant only */}
+      {!isLight && <div className="glass-glow-dark"></div>}
     </motion.div>
   );
 }

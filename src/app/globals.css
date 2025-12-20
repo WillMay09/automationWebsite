@@ -119,3 +119,107 @@ p {
     transparent
   );
 }
+
+/* ---------- GLASSMORPHISM CARDS - DARK MODE ---------- */
+
+/* Base glassmorphism card for dark backgrounds */
+.glass-card-dark {
+  background-color: rgb(var(--color-bg-card) / 0.5);
+  border: 1px solid rgb(255 255 255 / 0.05);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.glass-card-dark:hover {
+  background-color: rgb(var(--color-bg-card) / 0.8);
+  border-color: rgb(var(--color-accent) / 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Icon container in dark cards */
+.glass-icon-dark {
+  background-color: rgb(var(--color-accent) / 0.1);
+  color: rgb(var(--color-accent));
+  transition: all 0.3s ease;
+}
+
+.group:hover .glass-icon-dark {
+  background-color: rgb(var(--color-accent));
+  color: rgb(var(--color-text-primary-dark));
+}
+
+/* Ambient glow effect for dark cards */
+.glass-glow-dark {
+  position: absolute;
+  bottom: -1rem;
+  right: -1rem;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 9999px;
+  background-color: rgb(var(--color-accent) / 0.1);
+  filter: blur(40px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.group:hover .glass-glow-dark {
+  background-color: rgb(var(--color-accent) / 0.2);
+}
+
+/* ---------- GLASSMORPHISM CARDS - LIGHT MODE ---------- */
+
+/* Base glassmorphism card for light backgrounds */
+.glass-card-light {
+  background-color: rgb(var(--color-bg-light) / 0.6);
+  border: 1px solid rgb(var(--color-border-light));
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-glass-light);
+  transition: all 0.3s ease;
+}
+
+.glass-card-light:hover {
+  box-shadow: var(--shadow-glass-light-hover);
+  transform: translateY(-4px);
+}
+
+/* Status indicator dot */
+.status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: rgb(234 88 12); /* orange-600 */
+  box-shadow: var(--glow-accent-subtle);
+}
+
+/* ---------- SECTION BACKGROUNDS ---------- */
+
+/* Dark section with subtle overlay */
+.section-dark {
+  background-color: rgb(var(--color-bg-dark) / 0.2);
+  border-top: 1px solid rgb(255 255 255 / 0.05);
+}
+
+/* Light section */
+.section-light {
+  background-color: rgb(var(--color-bg-light-alt));
+  border-top: 1px solid rgb(255 255 255 / 0.05);
+  border-bottom: 1px solid rgb(255 255 255 / 0.05);
+}
+
+/* ---------- NAVBAR GLASSMORPHISM ---------- */
+.glass-navbar {
+  background-color: rgb(var(--color-bg-card) / 0.3);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgb(var(--color-border-dark));
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- UTILITY CLASSES ---------- */
+
+/* Backdrop blur variations */
+.backdrop-blur-glass { backdrop-filter: blur(12px); }
+.backdrop-blur-glass-strong { backdrop-filter: blur(16px); }
+
+/* Semi-transparent overlays */
+.overlay-dark { background-color: rgb(var(--color-bg-dark) / 0.5); }
+.overlay-light { background-color: rgb(var(--color-bg-light) / 0.6); }

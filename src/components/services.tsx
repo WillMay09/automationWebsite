@@ -20,51 +20,36 @@ interface ProjectCardProps {
   description: string;
   index: number;
 }
+
 function ProjectCard({ icon, title, description, index }: ProjectCardProps) {
   return (
     <motion.div
-      className="group relative bg-app-dark border border-dark rounded-2xl p-8 cursor-pointer overflow-hidden"
+      className="group relative glass-card-dark rounded-2xl p-8 cursor-pointer overflow-hidden hover:shadow-xl transition-all duration-300"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
-      whileHover={{ scale: 1.03, borderColor: "#f97316" }}
-     
     >
-      {/*Gradient background on hover */}
-      <motion.div className="absolute inset-0 gradient-accent-soft opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       {/*Content */}
       <div className="relative z-10">
         {/*Icon*/}
-        <motion.div
-          className="w-16 bg-card-dark rounded-xl flex items-center group-hover-gradient-accent-strong justify-center mb-6 transition-all duration-300"
-          whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="text-accent group-hover:text-white transition-colors duration-300">
-            {icon}
-          </div>
-        </motion.div>
-        {/*title */}
-        <h3 className="text-primary-dark mb-3 hover-text-accent transition-colors duration-300">
+        <div className="glass-icon-dark w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+          {icon}
+        </div>
+        
+        {/*Title */}
+        <h3 className="text-primary-dark text-xl font-medium mb-3 tracking-tight">
           {title}
         </h3>
+        
         {/*Description*/}
-        <p className="text-secondary-dark mb-6 group-hover:text-muted-dark transition-colors duration-300">
+        <p className="text-secondary-dark leading-relaxed">
           {description}
         </p>
-        {/*Arrow*/}
-        <motion.div
-          className="flex items-center gap-2 text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          initial={{ x: -10 }}
-          whileHover={{ x: 0 }}
-        >
-          <span className="text-sm">Learn more</span>
-          <ArrowRight className="w-4 h-4" />
-        </motion.div>
       </div>
-      {/* Decorative corner */}
-      <div className="absolute top-0 right-0 w-20 h-20 gradient-accent-soft to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      
+      {/* Ambient glow effect */}
+      <div className="glass-glow-dark"></div>
     </motion.div>
   );
 }
@@ -72,95 +57,86 @@ function ProjectCard({ icon, title, description, index }: ProjectCardProps) {
 export default function Services() {
   const projects = [
     {
-      icon: <Zap className="w-8 h-8" />,
+      icon: <Zap className="w-6 h-6" />,
       title: "Process Automation",
       description:
-        "Streamline workflows and eliminate repetitive tasks with intelligent automation solutions that boost productivity",
+        "End-to-end automation for repetitive tasks. Connect your apps and let our AI agents handle the busy work autonomously.",
     },
     {
-      icon: <Globe className="w-8 h-8" />,
+      icon: <Globe className="w-6 h-6" />,
       title: "Web Scraping",
       description:
-        "Extract valuable data from any website at scale with our advanced scraping tools and APIs",
+        "Extract valuable data from any website at scale with our advanced scraping tools and APIs.",
     },
     {
-      icon: <Code2 className="w-8 h-8" />,
+      icon: <Code2 className="w-6 h-6" />,
       title: "Full Stack Development",
-      description: "End-to-end web and mobile application development",
+      description: "Custom web and mobile applications built with modern frameworks and best practices for scalability.",
     },
     {
-      icon: <Brain className="w-8 h-8" />,
-      title: "AI/ML integration",
+      icon: <Brain className="w-6 h-6" />,
+      title: "Custom LLM Agents",
       description:
-        "Deploy cutting-edge machine learning models and AI solutions tailored to your bussiness needs",
+        "Tailored large language models trained on your proprietary data to handle customer support and internal queries.",
     },
     {
-      icon: <BarChart3 className="w-8 h-8" />,
-      title: "Data Analytics",
+      icon: <BarChart3 className="w-6 h-6" />,
+      title: "Predictive Analytics",
       description:
-        "Transform raw data into actionable insights with advanced analytics and visualization dashboards",
+        "Turn historical data into future insights. Our algorithms forecast trends, optimize inventory, and identify opportunities.",
     },
     {
-      icon: <Plug className="w-8 h-8" />,
+      icon: <Plug className="w-6 h-6" />,
       title: "API Development",
       description:
-        "Build robust, scalable APIs that seemlessly connect your systems and third-party services",
+        "Build robust, scalable APIs that seamlessly connect your systems and third-party services.",
     },
     {
-      icon: <Cloud className="w-8 h-8" />,
-      title: "Cloud Solutions",
+      icon: <Cloud className="w-6 h-6" />,
+      title: "Edge Deployment",
       description:
-        "Deploy and manage scalable cloud infrastructure on AWS, Azure, and Google Cloud Platform",
+        "Run powerful AI models directly on user devices for zero-latency performance and enhanced privacy compliance.",
     },
     {
-      icon: <Database className="w-8 h-8" />,
+      icon: <Database className="w-6 h-6" />,
       title: "Database Design",
       description:
-        "Design and optimize databases for performance, scalability, and data integrity",
+        "Design and optimize databases for performance, scalability, and data integrity across all major platforms.",
     },
     {
-      icon: <Sparkles className="w-8 h-8" />,
-      title: "Custom Software",
+      icon: <Sparkles className="w-6 h-6" />,
+      title: "AI Security",
       description:
-        "Bespoke software solutions engineered to solve your unique business challenges",
+        "Protect your models and data infrastructure with proprietary adversarial defense systems and auditing tools.",
     },
   ];
+
   return (
-    <section className="bg-gradient-to-b bg-app-dar py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section className="section-dark relative w-full py-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/*Section Header */}
-        <div className="text-center mb-16">
-          <motion.div
-            className="inline-block mb-4"
-            initial={{ opacity: 0, y: -10 }}
+        <div className="mb-16 max-w-2xl">
+          <motion.h2
+            className="text-primary-dark text-3xl font-semibold tracking-tight sm:text-4xl mb-4"
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-accent uppercase tracking-wider">
-              Our Expertise
-            </span>
-          </motion.div>
-          <motion.h2
-            className="text-white mb-4"
+            Intelligence as a Service
+          </motion.h2>
+          <motion.p
+            className="text-secondary-dark text-lg leading-relaxed"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            What We Build
-          </motion.h2>
-          <motion.p
-            className="text-secondary-dark text-xl max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            From intelligent automation to full-stack applications, we deliver
-            AI-powered solutions that transform how you do business
+            Our suite of AI solutions is designed to integrate seamlessly into your existing infrastructure, providing immediate value and long-term scalability.
           </motion.p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.title}
@@ -172,7 +148,6 @@ export default function Services() {
           ))}
         </div>
       </div>
-      {/*Project Section*/}
     </section>
   );
 }
