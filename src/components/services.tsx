@@ -112,7 +112,7 @@ export default function Services() {
   ];
 
   return (
-    <section className="section-dark relative w-full py-24">
+    <section id="Services" className="section-dark relative w-full py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/*Section Header */}
         <div className="mb-16 max-w-2xl">
