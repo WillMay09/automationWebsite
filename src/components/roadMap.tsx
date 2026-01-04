@@ -60,7 +60,7 @@ function RoadmapCard({ icon, step, title, description, visual }: RoadmapProps) {
 
 export function RoadMap() {
   return (
-    <section className="bg-light py-20 px-6">
+    <section id="roadmap" className="bg-light py-20 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">

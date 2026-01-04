@@ -9,14 +9,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/*Logo*/}
-          <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 gradient-accent-strong rounded-lg flex items-center justify-center">
               <span className="font-bold text-sm">AI</span>
             </div>
             <span className="text-xl font-bold tracking-wider text-primary-dark">
               SIGNALSTACK
             </span>
-          </div>
+          </Link>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-8 font-medium text-primary-dark">
@@ -27,7 +27,7 @@ export default function Navbar() {
               Why AI
             </Link>
             <Link
-              href="#Services"
+              href="/#services"
               className="flex items-center gap-1 hover-text-accent transition-colors"
             >
               Services
@@ -39,13 +39,13 @@ export default function Navbar() {
               Company
             </Link>
             <Link
-              href="#Pricing"
+              href="/pricing"
               className="flex items-center gap-1 hover-text-accent transition-colors"
             >
               Pricing
             </Link>
             <Link
-              href="#Roadmap"
+              href="/#roadmap"
               className="flex items-center gap-1 hover-text-accent transition-colors"
             >
               Roadmap

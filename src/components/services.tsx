@@ -36,18 +36,16 @@ function ProjectCard({ icon, title, description, index }: ProjectCardProps) {
         <div className="glass-icon-dark w-12 h-12 rounded-lg flex items-center justify-center mb-6">
           {icon}
         </div>
-        
+
         {/*Title */}
         <h3 className="text-primary-dark text-xl font-medium mb-3 tracking-tight">
           {title}
         </h3>
-        
+
         {/*Description*/}
-        <p className="text-secondary-dark leading-relaxed">
-          {description}
-        </p>
+        <p className="text-secondary-dark leading-relaxed">{description}</p>
       </div>
-      
+
       {/* Ambient glow effect */}
       <div className="glass-glow-dark"></div>
     </motion.div>
@@ -71,7 +69,8 @@ export default function Services() {
     {
       icon: <Code2 className="w-6 h-6" />,
       title: "Full Stack Development",
-      description: "Custom web and mobile applications built with modern frameworks and best practices for scalability.",
+      description:
+        "Custom web and mobile applications built with modern frameworks and best practices for scalability.",
     },
     {
       icon: <Brain className="w-6 h-6" />,
@@ -112,7 +111,7 @@ export default function Services() {
   ];
 
   return (
-    <section id="Services" className="section-dark relative w-full py-24">
+    <section id="services" className="section-dark relative w-full py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/*Section Header */}
         <div className="mb-16 max-w-2xl">
@@ -131,7 +130,9 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            Our suite of AI solutions is designed to integrate seamlessly into your existing infrastructure, providing immediate value and long-term scalability.
+            Our suite of AI solutions is designed to integrate seamlessly into
+            your existing infrastructure, providing immediate value and
+            long-term scalability.
           </motion.p>
         </div>
 
