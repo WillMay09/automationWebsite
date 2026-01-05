@@ -47,7 +47,7 @@ export default function HomePage() {
           <button
             onClick={handleSubmit}
             disabled={status === "loading"}
-            className="gradient-accent-strong text-primary-dark px-8 h-12 rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+            className="gradient-accent-strong text-primary-dark px-8 h-12 rounded-lg font-medium hover:opacity-80 transition-opacity disabled:opacity-50"
           >
             {status === "loading" ? "Sending..." : "Schedule Demo"}
           </button>

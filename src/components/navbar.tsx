@@ -57,9 +57,11 @@ export default function Navbar() {
             <button className="px-6 py-2.5 rounded-lg bg-card-dark border border-dark text-primary-dark hover-border-accent transition-all font-medium">
               Schedule Demo
             </button>
-            <button className="px-6 py-2.5 rounded-lg gradient-accent-strong text-primary-dark font-medium">
-              Get Started
-            </button>
+            <Link href="/pricing">
+              <button className="px-6 py-2.5 rounded-lg gradient-accent-strong text-primary-dark font-medium hover:opacity-80 transition-opacity disabled:opacity-50">
+                Get Started
+              </button>
+            </Link>
           </div>
         </div>
       </div>

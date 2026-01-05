@@ -1,7 +1,9 @@
 "use client";
-
+import { useRef } from "react";
+import { useNodeGraphAnimation } from "../app/hooks/useNodeGraphAnimation";
 import React from "react";
-
+import { Button } from "./ui/button";
+import { motion } from "framer-motion";
 // Icons
 const Zap = ({ className }: { className?: string }) => (
   <svg
@@ -35,105 +37,46 @@ const Sparkles = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Reusable Button Component
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline";
-  size?: "sm" | "md" | "lg";
-  children: React.ReactNode;
-}
-
-function Button({
-  variant = "primary",
-  size = "md",
-  className = "",
-  children,
-  ...props
-}: ButtonProps) {
-  const baseStyles =
-    "inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all disabled:opacity-50 disabled:pointer-events-none";
-
-  const variants = {
-    primary:
-      "gradient-accent-strong text-primary-dark hover:opacity-90 shadow-lg",
-    secondary: "bg-light text-primary-light hover:bg-light/80 shadow-lg",
-    outline:
-      "border border-dark text-primary-dark hover-border-accent hover:bg-card-dark/20",
-  };
-
-  const sizes = {
-    sm: "px-4 py-2 text-sm",
-    md: "px-5 py-2.5 text-sm",
-    lg: "px-6 py-3 text-base",
-  };
-
-  return (
-    <button
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-}
-
 // Reusable Step Card Component
 interface StepCardProps {
   step: number;
   title: string;
   description: string;
+  index: number;
 }
 
-function StepCard({ step, title, description }: StepCardProps) {
+function StepCard({ step, title, description, index }: StepCardProps) {
   return (
-    <div className="group rounded-xl border border-dark bg-card-dark/20 p-5 hover:bg-card-dark/40 transition-all">
-      <p className="text-[10px] uppercase tracking-wider font-semibold text-secondary-dark mb-2 group-hover:text-muted-dark transition-colors">
+    <motion.div
+      className="group relative z-10 cursor-pointer hover:shadow-xl hover-border-accent rounded-xl border border-dark bg-card-dark/20 p-5 overflow-hidden transition-all"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+      whileHover={{
+        y: -5,
+        boxShadow: "0 10px 30px rgba(249, 115, 22, 0.2)",
+        transition: { duration: 0.3 },
+      }}
+    >
+      <p className="text-[10px] uppercase tracking-wider font-semibold text-accent mb-2">
         Step {step}
       </p>
       <h4 className="text-base font-medium text-primary-dark mb-2">{title}</h4>
       <p className="text-sm text-secondary-dark leading-relaxed">
         {description}
       </p>
-    </div>
-  );
-}
-
-// Animated Particle Component
-interface ParticleProps {
-  top?: string;
-  left?: string;
-  right?: string;
-  bottom?: string;
-  delay?: number;
-  color?: "white" | "orange";
-}
-
-function Particle({
-  top,
-  left,
-  right,
-  bottom,
-  delay = 0,
-  color = "white",
-}: ParticleProps) {
-  const colorClass = color === "orange" ? "bg-accent/40" : "bg-white/40";
-  const style = {
-    top,
-    left,
-    right,
-    bottom,
-    animationDelay: `${delay}s`,
-  };
-
-  return (
-    <div
-      className={`absolute h-1 w-1 ${colorClass} rounded-full animate-pulse`}
-      style={style}
-    />
+    </motion.div>
   );
 }
 
 // Main Pricing Section
 export default function PricingSection() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useNodeGraphAnimation(canvasRef);
+  {
+    /*Neural Network Background */
+  }
+
   const steps = [
     {
       step: 1,
@@ -166,16 +109,12 @@ export default function PricingSection() {
       id="pricing"
       className="relative w-full py-32 overflow-hidden bg-[#050505] border-t border-dark"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-grid-light opacity-5 pointer-events-none"></div>
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none"
+      />
 
-      {/* Animated Particles */}
-      <Particle top="5rem" left="2.5rem" delay={0} />
-      <Particle top="10rem" right="5rem" delay={1} color="orange" />
-      <Particle bottom="5rem" left="33%" delay={2} />
-      <Particle top="50%" right="2.5rem" delay={3} color="orange" />
-
-      <div className="relative z-30 mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Heading */}
         <div className="mb-16 text-center">
           <h2 className="text-4xl font-semibold tracking-tight text-primary-dark mb-4">
@@ -211,13 +150,14 @@ export default function PricingSection() {
             </div>
 
             {/* Steps Grid */}
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-              {steps.map((step) => (
+            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+              {steps.map((step, index) => (
                 <StepCard
                   key={step.step}
                   step={step.step}
                   title={step.title}
                   description={step.description}
+                  index={index}
                 />
               ))}
             </div>
@@ -237,7 +177,10 @@ export default function PricingSection() {
                   </p>
                 </div>
               </div>
-              <Button variant="secondary" className="w-full sm:w-auto">
+              <Button
+                variant="accent"
+                className="w-full sm:w-auto glow-accent-strong hover:opacity-90 transition-opacity"
+              >
                 Book a Strategy Call
               </Button>
             </div>

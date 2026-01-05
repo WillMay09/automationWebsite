@@ -166,6 +166,15 @@ p {
   background-color: rgb(var(--color-accent) / 0.2);
 }
 
+.glow-accent {
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+}
+
+/* Strong glow */
+.glow-accent-strong {
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.7);
+}
+
 /* ---------- GLASSMORPHISM CARDS - LIGHT MODE ---------- */
 
 /* Base glassmorphism card for light backgrounds */
