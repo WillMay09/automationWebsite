@@ -33,7 +33,7 @@ export default function Navbar() {
               Services
             </Link>
             <Link
-              href="#Company"
+              href="/about"
               className="flex items-center gap-1 hover-text-accent transition-colors"
             >
               Company
