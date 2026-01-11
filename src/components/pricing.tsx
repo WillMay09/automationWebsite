@@ -4,6 +4,7 @@ import { useNodeGraphAnimation } from "../app/hooks/useNodeGraphAnimation";
 import React from "react";
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
+import  Link  from "next/link";
 // Icons
 const Zap = ({ className }: { className?: string }) => (
   <svg
@@ -177,12 +178,14 @@ export default function PricingSection() {
                   </p>
                 </div>
               </div>
-              <Button
-                variant="accent"
-                className="w-full sm:w-auto glow-accent-strong hover:opacity-90 transition-opacity"
-              >
-                Book a Strategy Call
-              </Button>
+              <Link href="/strategy-call">
+                <Button
+                  variant="accent"
+                  className="w-full sm:w-auto glow-accent-strong hover:opacity-90 transition-opacity"
+                >
+                  Book a Strategy Call
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
