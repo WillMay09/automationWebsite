@@ -7,7 +7,7 @@ import { Sparkles } from "lucide-react";
 import { stringify } from "querystring";
 import { useEmailSignup } from "@/src/app/hooks/useEmailSignup";
 import { useNodeGraphAnimation } from "../app/hooks/useNodeGraphAnimation";
-
+import Link from "next/link";
 export default function HomePage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useNodeGraphAnimation(canvasRef);
@@ -44,13 +44,14 @@ export default function HomePage() {
             required
             className="flex-1 bg-card-dark/50 border border-dark text-primary-dark placeholder:text-secondary-dark h-12 backdrop-blur-sm rounded-lg px-4 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-accent))] focus-border-accent transition-all"
           />
+          <Link href="/calendar">
           <button
-            onClick={handleSubmit}
             disabled={status === "loading"}
             className="gradient-accent-strong text-primary-dark px-8 h-12 rounded-lg font-medium hover:opacity-80 transition-opacity disabled:opacity-50"
           >
             {status === "loading" ? "Sending..." : "Schedule Demo"}
           </button>
+          </Link>
         </div>
         
         {status === "success" && (
