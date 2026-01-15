@@ -13,11 +13,6 @@ export default function HomePage() {
   useNodeGraphAnimation(canvasRef);
   const { email, setEmail, submitEmail, status } = useEmailSignup();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Email submitted:", email);
-    submitEmail();
-  };
 
   return (
     <section className="relative flex items-center text-primary-dark justify-center min-h-screen bg-card-dark px-6 overflow-hidden">
@@ -33,9 +28,15 @@ export default function HomePage() {
           Building Robust and Scalable AI Integrated Solutions tailored to your
           business needs
         </p>
-        
+
         {/* Schedule a demo*/}
-        <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto mb-4">
+        <form
+          className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto mb-4"
+          onSubmit={(e) => {
+            e.preventDefault();
+            submitEmail();
+          }}
+        >
           <input
             type="email"
             placeholder="Enter Email"
@@ -44,22 +45,22 @@ export default function HomePage() {
             required
             className="flex-1 bg-card-dark/50 border border-dark text-primary-dark placeholder:text-secondary-dark h-12 backdrop-blur-sm rounded-lg px-4 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-accent))] focus-border-accent transition-all"
           />
-          <Link href="/calendar">
+
           <button
+            type="submit"
             disabled={status === "loading"}
             className="gradient-accent-strong text-primary-dark px-8 h-12 rounded-lg font-medium hover:opacity-80 transition-opacity disabled:opacity-50"
           >
             {status === "loading" ? "Sending..." : "Schedule Demo"}
           </button>
-          </Link>
-        </div>
-        
+        </form>
+        {/*         
         {status === "success" && (
           <p className="text-primary-dark">Thanks! We will be in touch shortly</p>
-        )}
+        )} */}
         {status === "error" && (
           <p className="text-accent-strong text-center">
-            Something went wrong. Try again
+            Please enter a valid email address
           </p>
         )}
       </div>
