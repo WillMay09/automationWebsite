@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function useQualifiedLeadSignup() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,6 +18,19 @@ export function useQualifiedLeadSignup() {
   >("idle");
 
   const submitFormData = async () => {
+    //validate required fields
+    if (
+      !formData.email ||
+      !formData.name ||
+      !formData.teamSize ||
+      !formData.focusArea ||
+      !formData.urgency ||
+      !formData.winDefinition
+    ) {
+      setStatus("error");
+      return;
+    }
+    //visual feedback to user/prevents double submissions
     setStatus("loading");
     try {
       const res = await fetch("api/qualified-lead", {
@@ -29,16 +44,23 @@ export function useQualifiedLeadSignup() {
       if (!res.ok) {
         throw new Error();
       }
+
+      //route to calendar with sessionId
+      router.push(`/calendar?session=${data.sessionId}`);
+
       setStatus("success");
-      setFormData({
-        name: "",
-        email: "",
-        teamSize: "",
-        focusArea: "",
-        urgency: "",
-        winDefinition: "",
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          teamSize: "",
+          focusArea: "",
+          urgency: "",
+          winDefinition: "",
+        });
       });
-    } catch {
+    } catch (error) {
+      console.error("Error submitting form data:", error);
       setStatus("error");
     }
   };
